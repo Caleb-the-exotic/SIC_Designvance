@@ -113,13 +113,13 @@ function Index() {
             ))}
           </div>
           <div className="mt-12 flex flex-wrap gap-3">
-            <Link
-              to="/projects"
-              className="group inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 font-mono text-xs uppercase tracking-[0.18em] text-primary-foreground transition-transform hover:-translate-y-0.5"
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 font-mono text-xs uppercase tracking-[0.18em] text-primary-foreground cursor-default"
             >
               Explore Projects
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+              <ArrowRight className="h-4 w-4" />
+            </button>
             <Link
               to="/team"
               className="inline-flex items-center gap-2 rounded-sm border border-border px-6 py-3 font-mono text-xs uppercase tracking-[0.18em] text-foreground transition-colors hover:border-primary hover:text-primary"
@@ -139,13 +139,13 @@ function Index() {
               design challenges.
             </p>
           </div>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 font-mono text-xs uppercase tracking-[0.18em] text-primary-foreground transition-transform hover:-translate-y-0.5"
+          <button
+            type="button"
+            className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 font-mono text-xs uppercase tracking-[0.18em] text-primary-foreground cursor-default"
           >
             Contact INTEGRIS
             <ArrowRight className="h-4 w-4" />
-          </Link>
+          </button>
         </div>
       </section>
     </>
