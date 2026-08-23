@@ -15,34 +15,46 @@ export type TeamMember = {
 // Add a new member by appending an object here.
 export const team: TeamMember[] = [
   {
-    name: "Aarav Menon",
-    role: "Wing Lead — Structural Design",
-    bio: "Drives design reviews and load-path decisions across every INTEGRIS build.",
+    name: "Anish Kumar",
+    role: "Structural Designer",
+    bio: "Works on load-path analysis and connection design for modular truss systems.",
+    photo: "/Members/Anish%20Kumar.jpeg",
   },
   {
-    name: "Ishita Rao",
-    role: "Head of FEA & Simulation",
-    bio: "Owns meshing strategy, convergence studies and post-processing of stress results.",
+    name: "Anandha Akshaya",
+    role: "FEA Analyst",
+    bio: "Specializes in meshing strategies and convergence studies for complex assemblies.",
+    photo: "/Members/Anandha%20Akshaya.jpeg",
   },
   {
-    name: "Karthik Nair",
-    role: "Strength of Materials Lead",
-    bio: "Translates beam, torsion and fatigue theory into verified hand calculations.",
+    name: "Caleb",
+    role: "Materials Engineer",
+    bio: "Validates material models through tensile, hardness and impact testing.",
+    photo: "/Members/Caleb.png",
   },
   {
-    name: "Sneha Patil",
+    name: "Dharineesh",
     role: "CAD & Prototyping Lead",
     bio: "Maintains the parametric part library and runs the additive manufacturing cell.",
+    photo: "/Members/Dharineesh.jpeg",
   },
   {
-    name: "Rohan Desai",
-    role: "Materials & Testing Engineer",
-    bio: "Plans tensile, hardness and impact testing to validate simulation assumptions.",
+    name: "Mari Mathesh",
+    role: "Simulation Engineer",
+    bio: "Owns post-processing of stress results and design optimization workflows.",
+    photo: "/Members/Mari%20Mathesh.jpeg",
   },
   {
-    name: "Meera Krishnan",
+    name: "PTS",
     role: "Documentation & Outreach",
-    bio: "Keeps design reports, drawings and industry collaborations in order.",
+    bio: "Manages design reports, drawings and industry collaboration documentation.",
+    photo: "/Members/PTS.jpeg",
+  },
+  {
+    name: "Monisha Devi",
+    role: "Testing & Validation Engineer",
+    bio: "Plans and executes physical testing to verify simulation assumptions.",
+    photo: "/Members/Monisha%20Devi.jpeg",
   },
 ];
 
