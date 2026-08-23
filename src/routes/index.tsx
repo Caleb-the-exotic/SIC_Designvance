@@ -48,7 +48,7 @@ function Index() {
   return (
     <>
       <section className="relative flex min-h-svh overflow-hidden border-b border-border">
-        <div className="pointer-events-none absolute inset-0">
+        <div className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 h-full w-[100vw] min-w-[1400px]">
           <WebThreads
             color1="#FF6A00"
             color2="#FFC46B"
@@ -73,20 +73,21 @@ function Index() {
             mouseStrength={0.3}
           />
         </div>
-        <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center px-5 pb-14 pt-18 md:pb-24 md:pt-24">
-          <div className="max-w-4xl text-center">
-            <h1 className="rise-in whitespace-nowrap font-hero text-sm uppercase leading-[0.9] tracking-wide drop-shadow-[0_3px_10px_rgba(0,0,0,0.9)] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl">
+        <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-5 py-8 sm:py-12 my-auto">
+          <div className="max-w-4xl text-center pb-8 sm:pb-10">
+            <h1 className="rise-in font-hero text-2xl uppercase leading-[1.05] tracking-wide drop-shadow-[0_3px_10px_rgba(0,0,0,0.9)] sm:whitespace-nowrap sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl sm:leading-[0.9]">
               Engineering Strength. <span className="text-primary">Designing the Future.</span>
             </h1>
           </div>
-          <div className="flex-1" />
-          <img
-            src="/Integris%202.png"
-            alt="INTEGRIS logo"
-            width={800}
-            height={400}
-            className="rise-in mt-6 h-56 w-auto object-contain md:mt-8 md:h-80 lg:h-[26rem]"
-          />
+          <div className="my-auto flex items-center justify-center pt-4 sm:pt-8 pb-2">
+            <img
+              src="/Integris%202.png"
+              alt="INTEGRIS logo"
+              width={800}
+              height={400}
+              className="rise-in h-60 w-auto object-contain sm:h-72 md:h-80 lg:h-[26rem]"
+            />
+          </div>
         </div>
       </section>
 

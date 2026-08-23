@@ -8,12 +8,8 @@ import logo from "@/assets/integris-logo.png";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
   { to: "/team", label: "Our Team" },
   { to: "/industry-visit", label: "Industry Visit" },
-  { to: "/technology", label: "Technology" },
-  { to: "/projects", label: "Projects" },
-  { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {
@@ -65,34 +61,24 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 lg:flex">
-          {user ? (
-            <>
-              <Link
-                to="/upload"
-                className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] text-foreground transition-colors hover:border-primary hover:text-primary"
-              >
-                <Upload className="h-3.5 w-3.5" />
-                Upload
-              </Link>
-              <button
-                type="button"
-                onClick={handleSignOut}
-                className="rounded-sm border border-primary/60 px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-              >
-                Log out
-              </button>
-            </>
-          ) : (
+        {user && (
+          <div className="hidden items-center gap-2 lg:flex">
             <Link
-              to="/auth"
-              className="inline-flex items-center gap-2 rounded-sm border border-primary/60 px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+              to="/upload"
+              className="inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] text-foreground transition-colors hover:border-primary hover:text-primary"
             >
-              <LogIn className="h-3.5 w-3.5" />
-              Login
+              <Upload className="h-3.5 w-3.5" />
+              Upload
             </Link>
-          )}
-        </div>
+            <button
+              type="button"
+              onClick={handleSignOut}
+              className="rounded-sm border border-primary/60 px-4 py-2 font-mono text-xs uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+            >
+              Log out
+            </button>
+          </div>
+        )}
 
         <button
           type="button"
@@ -118,7 +104,7 @@ export function SiteHeader() {
               {l.label}
             </Link>
           ))}
-          {user ? (
+          {user && (
             <div className="mt-3 flex gap-2">
               <Link
                 to="/upload"
@@ -135,14 +121,6 @@ export function SiteHeader() {
                 Log out
               </button>
             </div>
-          ) : (
-            <Link
-              to="/auth"
-              onClick={() => setOpen(false)}
-              className="mt-3 block rounded-sm border border-primary/60 px-4 py-2 text-center font-mono text-xs uppercase tracking-[0.18em] text-primary"
-            >
-              Login
-            </Link>
           )}
         </nav>
       )}

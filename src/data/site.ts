@@ -8,86 +8,96 @@ import visitCnc from "@/assets/visit-cnc.jpg";
 export type TeamMember = {
   name: string;
   role: string;
-  bio: string;
+  department: string;
+  bio?: string;
   photo?: string;
+  linkedin?: string;
 };
 
-// Add a new member by appending an object here.
-export const team: TeamMember[] = [
+export type Mentor = {
+  name: string;
+  role: string;
+  department: string;
+  institution: string;
+  photo?: string;
+  linkedin?: string;
+};
+
+export const leadership: TeamMember[] = [
   {
-    name: "Anish Kumar",
-    role: "Structural Designer",
-    bio: "Works on load-path analysis and connection design for modular truss systems.",
-    photo: "/Members/Anish%20Kumar.jpeg",
+    name: "Dharineesh",
+    role: "Team leader",
+    department: "II - Mech",
+    photo: "/Members/Dharineesh.jpeg",
+    linkedin: "https://www.linkedin.com/in/dharineesh-k/",
   },
   {
+    name: "Anish Kumar",
+    role: "Team Manager",
+    department: "II - Mech (Lateral Entry)",
+    photo: "/Members/Anish%20Kumar.jpeg",
+  },
+];
+
+export const members: TeamMember[] = [
+  {
     name: "Anandha Akshaya",
-    role: "FEA Analyst",
-    bio: "Specializes in meshing strategies and convergence studies for complex assemblies.",
+    role: "Team member",
+    department: "II - Mech",
     photo: "/Members/Anandha%20Akshaya.jpeg",
+    linkedin: "https://www.linkedin.com/in/anandha-akshaya/",
   },
   {
     name: "Caleb",
-    role: "Materials Engineer",
-    bio: "Validates material models through tensile, hardness and impact testing.",
+    role: "Team member",
+    department: "II - Mech",
     photo: "/Members/Caleb.png",
-  },
-  {
-    name: "Dharineesh",
-    role: "CAD & Prototyping Lead",
-    bio: "Maintains the parametric part library and runs the additive manufacturing cell.",
-    photo: "/Members/Dharineesh.jpeg",
+    linkedin: "https://www.linkedin.com/in/caleb-caleb-s/",
   },
   {
     name: "Mari Mathesh",
-    role: "Simulation Engineer",
-    bio: "Owns post-processing of stress results and design optimization workflows.",
+    role: "Team member",
+    department: "II - Mech",
     photo: "/Members/Mari%20Mathesh.jpeg",
-  },
-  {
-    name: "PTS",
-    role: "Documentation & Outreach",
-    bio: "Manages design reports, drawings and industry collaboration documentation.",
-    photo: "/Members/PTS.jpeg",
+    linkedin: "https://www.linkedin.com/in/mari-mathesh-g/",
   },
   {
     name: "Monisha Devi",
-    role: "Testing & Validation Engineer",
-    bio: "Plans and executes physical testing to verify simulation assumptions.",
+    role: "Team member",
+    department: "II - Mech",
     photo: "/Members/Monisha%20Devi.jpeg",
+    linkedin: "https://www.linkedin.com/in/monisha-yathavan-079694300/",
   },
 ];
+
+export const mentor: Mentor = {
+  name: "P.T.Saravanakumar",
+  role: "Mentor / HOD",
+  department: "Department: Mechanical Engineering",
+  institution: "Sri Ramakrishna Institute of Technology",
+  photo: "/Members/PTS.jpeg",
+  linkedin:
+    "https://www.linkedin.com/in/dr-p-t-saravanakumar-pts-m-e-phd-mba-fie-miste-27b736237/",
+};
+
+export const team: TeamMember[] = [...leadership, ...members];
 
 export type Visit = {
   company: string;
   location: string;
   date: string;
-  image: string;
-  outcomes: string[];
+  images: string[];
+  outcomes?: string[];
+  reportUrl?: string;
 };
 
 export const visits: Visit[] = [
   {
-    company: "Meridian Steel Fabrication Works",
+    company: "AIRAA Engineering works & Kiruthiga Industries",
     location: "Coimbatore, Tamil Nadu",
-    date: "March 2026",
-    image: visitSteel,
-    outcomes: [
-      "Observed weld joint preparation and its effect on fatigue life",
-      "Compared rolled vs. built-up sections for real load cases",
-      "Studied crane girder deflection limits used on the shop floor",
-    ],
-  },
-  {
-    company: "Axion Precision Components",
-    location: "Pune, Maharashtra",
-    date: "November 2025",
-    image: visitCnc,
-    outcomes: [
-      "Walked a full CNC machining line from raw billet to inspection",
-      "Learned GD&T callouts that survive production tolerance stacks",
-      "Saw how DFM feedback reshapes an early CAD model",
-    ],
+    date: "14-08-2026",
+    images: ["/IV/1.jpeg", "/IV/2.jpeg", "/IV/3.jpeg"],
+    outcomes: [],
   },
 ];
 

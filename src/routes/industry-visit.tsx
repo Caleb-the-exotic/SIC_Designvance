@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CalendarDays, MapPin } from "lucide-react";
+import { CalendarDays, MapPin, Download, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
 import { PageHero } from "@/components/site/page-hero";
-import { visits } from "@/data/site";
-import { UploadedPosts } from "@/components/site/uploaded-posts";
+import { visits, type Visit } from "@/data/site";
 
 export const Route = createFileRoute("/industry-visit")({
   head: () => ({
@@ -23,6 +23,144 @@ export const Route = createFileRoute("/industry-visit")({
   component: IndustryVisit,
 });
 
+function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  }, [images.length]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  }, [images.length]);
+
+  // Auto-advance every 3.5 seconds
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const interval = setInterval(nextSlide, 3500);
+    return () => clearInterval(interval);
+  }, [nextSlide, images.length]);
+
+  if (!images || images.length === 0) return null;
+
+  return (
+    <div className="relative w-full aspect-[4/3] overflow-hidden rounded-xl bg-muted group shrink-0">
+      {images.map((img, idx) => (
+        <img
+          key={img}
+          src={img}
+          alt={`${alt} - image ${idx + 1}`}
+          width={1600}
+          height={1200}
+          loading={idx === 0 ? "eager" : "lazy"}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out ${
+            idx === currentIndex ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        />
+      ))}
+
+      {images.length > 1 && (
+        <>
+          {/* Navigation Arrows */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              prevSlide();
+            }}
+            aria-label="Previous slide"
+            className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-background/70 p-2 text-foreground backdrop-blur-sm opacity-0 transition-opacity hover:bg-background group-hover:opacity-100"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              nextSlide();
+            }}
+            aria-label="Next slide"
+            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-background/70 p-2 text-foreground backdrop-blur-sm opacity-0 transition-opacity hover:bg-background group-hover:opacity-100"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+
+          {/* Dots Indicator */}
+          <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5 rounded-full bg-background/60 px-2.5 py-1 backdrop-blur-sm">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setCurrentIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  idx === currentIndex ? "w-6 bg-primary" : "w-2 bg-foreground/40 hover:bg-foreground/70"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function VisitCard({ visit }: { visit: Visit }) {
+  return (
+    <article className="overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-6 md:p-7 shadow-sm transition-all duration-300 hover:border-border/80">
+      <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-stretch">
+        {/* Left side: Carousel as rounded rectangle */}
+        <div className="w-full md:w-1/2 lg:w-[48%] shrink-0">
+          <ImageCarousel images={visit.images} alt={visit.company} />
+        </div>
+
+        {/* Right side: Information & actions */}
+        <div className="flex flex-col justify-between flex-1 py-1">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">{visit.company}</h2>
+            <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+              <span className="inline-flex items-center gap-2">
+                <MapPin className="h-3.5 w-3.5 text-primary" />
+                {visit.location}
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <CalendarDays className="h-3.5 w-3.5 text-primary" />
+                {visit.date}
+              </span>
+            </div>
+
+            <h3 className="tech-label mt-6">Key learning outcomes</h3>
+            {visit.outcomes && visit.outcomes.length > 0 ? (
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                {visit.outcomes.map((o) => (
+                  <li key={o} className="flex gap-3">
+                    <span className="mt-2 h-px w-4 shrink-0 bg-primary" />
+                    {o}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="mt-3 min-h-[1.5rem]" />
+            )}
+          </div>
+
+          {/* Download reports button in bottom right corner */}
+          <div className="mt-8 flex justify-end">
+            <a
+              href={visit.reportUrl || "#"}
+              download
+              className="inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-4 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary shadow-sm"
+            >
+              <Download className="h-4 w-4" />
+              Download Reports
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function IndustryVisit() {
   return (
     <>
@@ -32,54 +170,15 @@ function IndustryVisit() {
         description="Site visits let members compare textbook assumptions with how components are actually fabricated, joined, inspected and shipped."
       />
 
-      <section className="mx-auto max-w-5xl px-5 py-20">
+      <section className="mx-auto max-w-6xl px-5 py-20">
         <ol className="relative space-y-12 border-l border-border pl-6 md:pl-10">
           {visits.map((v) => (
             <li key={v.company} className="relative">
               <span className="absolute -left-[31px] top-2 h-3 w-3 rotate-45 border border-primary bg-background md:-left-[47px]" />
-              <article className="hover-lift overflow-hidden rounded-sm border border-border bg-card">
-                <img
-                  src={v.image}
-                  alt={`${v.company} visit`}
-                  width={1280}
-                  height={800}
-                  loading="lazy"
-                  className="h-56 w-full object-cover md:h-72"
-                />
-                <div className="p-6 md:p-8">
-                  <h2 className="text-xl font-semibold md:text-2xl">{v.company}</h2>
-                  <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
-                    <span className="inline-flex items-center gap-2">
-                      <MapPin className="h-3.5 w-3.5 text-primary" />
-                      {v.location}
-                    </span>
-                    <span className="inline-flex items-center gap-2">
-                      <CalendarDays className="h-3.5 w-3.5 text-primary" />
-                      {v.date}
-                    </span>
-                  </div>
-                  <h3 className="tech-label mt-6">Key learning outcomes</h3>
-                  <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
-                    {v.outcomes.map((o) => (
-                      <li key={o} className="flex gap-3">
-                        <span className="mt-2 h-px w-4 shrink-0 bg-primary" />
-                        {o}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
+              <VisitCard visit={v} />
             </li>
           ))}
         </ol>
-
-        <div className="mt-20">
-          <p className="tech-label">Member uploads</p>
-          <h2 className="mt-3 text-2xl font-bold md:text-3xl">Recent visit submissions</h2>
-          <div className="mt-8">
-            <UploadedPosts section="industry_visit" emptyText="No member-uploaded visits yet." />
-          </div>
-        </div>
       </section>
     </>
   );

@@ -28,10 +28,9 @@ export function SiteFooter() {
           <h3 className="tech-label">Navigate</h3>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             {[
-              { to: "/about", label: "About" },
+              { to: "/", label: "Home" },
               { to: "/team", label: "Our Team" },
-              { to: "/projects", label: "Projects" },
-              { to: "/technology", label: "Technology" },
+              { to: "/industry-visit", label: "Industry Visit" },
             ].map((l) => (
               <li key={l.to}>
                 <Link to={l.to} className="transition-colors hover:text-primary">
