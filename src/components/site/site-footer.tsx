@@ -30,6 +30,7 @@ export function SiteFooter() {
             {[
               { to: "/", label: "Home" },
               { to: "/team", label: "Our Team" },
+              { to: "/technology", label: "Technology" },
               { to: "/industry-visit", label: "Industry Visit" },
             ].map((l) => (
               <li key={l.to}>

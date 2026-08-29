@@ -172,6 +172,34 @@
     background: var(--primary);
     color: var(--primary-foreground);
   }
+
+  /* Custom scrollbar — thin, dark, orange accent on hover/drag */
+  *,
+  *::before,
+  *::after {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.35 0.03 258) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: oklch(0.35 0.03 258);
+    border-radius: 999px;
+    transition: background-color 0.2s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover,
+  ::-webkit-scrollbar-thumb:active {
+    background-color: var(--primary);
+  }
 }
 
 @theme inline {

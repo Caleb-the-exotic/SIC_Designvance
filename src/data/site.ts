@@ -25,17 +25,18 @@ export type Mentor = {
 
 export const leadership: TeamMember[] = [
   {
-    name: "Dharineesh",
+    name: "Mari Mathesh",
     role: "Team leader",
+    department: "II - Mech",
+    photo: "/Members/Mari%20Mathesh.jpeg",
+    linkedin: "https://www.linkedin.com/in/mari-mathesh-g/",
+  },
+  {
+    name: "Dharineesh",
+    role: "Team Manager",
     department: "II - Mech",
     photo: "/Members/Dharineesh.jpeg",
     linkedin: "https://www.linkedin.com/in/dharineesh-k/",
-  },
-  {
-    name: "Anish Kumar",
-    role: "Team Manager",
-    department: "II - Mech (Lateral Entry)",
-    photo: "/Members/Anish%20Kumar.jpeg",
   },
 ];
 
@@ -48,18 +49,17 @@ export const members: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/anandha-akshaya/",
   },
   {
+    name: "Anish Kumar",
+    role: "Team member",
+    department: "II - Mech (Lateral Entry)",
+    photo: "/Members/Anish%20Kumar.jpeg",
+  },
+  {
     name: "Caleb",
     role: "Team member",
     department: "II - Mech",
     photo: "/Members/Caleb.png",
     linkedin: "https://www.linkedin.com/in/caleb-caleb-s/",
-  },
-  {
-    name: "Mari Mathesh",
-    role: "Team member",
-    department: "II - Mech",
-    photo: "/Members/Mari%20Mathesh.jpeg",
-    linkedin: "https://www.linkedin.com/in/mari-mathesh-g/",
   },
   {
     name: "Monisha Devi",
@@ -88,7 +88,7 @@ export type Visit = {
   date: string;
   images: string[];
   outcomes?: string[];
-  reportUrl?: string;
+  reports?: { label: string; url: string }[];
 };
 
 export const visits: Visit[] = [
@@ -96,8 +96,30 @@ export const visits: Visit[] = [
     company: "AIRAA Engineering works & Kiruthiga Industries",
     location: "Coimbatore, Tamil Nadu",
     date: "14-08-2026",
-    images: ["/IV/1.jpeg", "/IV/2.jpeg", "/IV/3.jpeg"],
-    outcomes: [],
+    images: [
+      "/IV/AIRAA Engineering works & Kiruthiga Industries/1.jpeg",
+      "/IV/AIRAA Engineering works & Kiruthiga Industries/2.jpeg",
+      "/IV/AIRAA Engineering works & Kiruthiga Industries/3.jpeg",
+    ],
+    reports: [
+      { label: "AIRAA Engineering Report", url: "/IV/AIRAA Engineering works & Kiruthiga Industries/Industrial_Visit_Report_Airaa_Engineering.pdf" },
+      { label: "Kiruthiga Industries Report", url: "/IV/AIRAA Engineering works & Kiruthiga Industries/INDUSTRIAL VISIT REPORT_Kiruthiga Industries.pdf" },
+    ],
+    outcomes: [
+      "Understanding of CNC turning and milling operations",
+      "Knowledge of VMC and multi-axis machining",
+      "Basic understanding of CNC programming and machine control",
+      "Familiarity with FANUC and Siemens CNC systems",
+      "Understanding of machining tools and tool stations",
+      "Knowledge of dimensional tolerances and precision machining",
+      "Practical exposure to measurement and inspection instruments",
+      "Understanding of fiber laser cutting and MIG welding",
+      "Knowledge of sheet-metal materials such as MS, SS, GI and aluminium",
+      "Understanding of oxygen and nitrogen gas selection in laser cutting",
+      "Understanding of the CAD → DXF → cutting software → G-code → machine workflow",
+      "Awareness of the importance of quality control, accuracy, repeatability and productivity",
+      "Ability to connect classroom concepts with real industrial manufacturing practices",
+    ],
   },
 ];
 

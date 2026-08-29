@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CalendarDays, MapPin, Download, ChevronLeft, ChevronRight } from "lucide-react";
+import { CalendarDays, MapPin, Download, ChevronLeft, ChevronRight, FileText } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { PageHero } from "@/components/site/page-hero";
 import { visits, type Visit } from "@/data/site";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/industry-visit")({
   head: () => ({
@@ -105,59 +106,126 @@ function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
   );
 }
 
-function VisitCard({ visit }: { visit: Visit }) {
-  return (
-    <article className="overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-6 md:p-7 shadow-sm transition-all duration-300 hover:border-border/80">
-      <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-stretch">
-        {/* Left side: Carousel as rounded rectangle */}
-        <div className="w-full md:w-1/2 lg:w-[48%] shrink-0">
-          <ImageCarousel images={visit.images} alt={visit.company} />
-        </div>
+const VISIBLE_OUTCOMES = 5;
 
-        {/* Right side: Information & actions */}
-        <div className="flex flex-col justify-between flex-1 py-1">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">{visit.company}</h2>
-            <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
-              <span className="inline-flex items-center gap-2">
-                <MapPin className="h-3.5 w-3.5 text-primary" />
-                {visit.location}
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <CalendarDays className="h-3.5 w-3.5 text-primary" />
-                {visit.date}
-              </span>
+function VisitCard({ visit }: { visit: Visit }) {
+  const [downloadOpen, setDownloadOpen] = useState(false);
+  const [outcomesOpen, setOutcomesOpen] = useState(false);
+  const hasReports = visit.reports && visit.reports.length > 0;
+  const hasOutcomes = visit.outcomes && visit.outcomes.length > 0;
+  const needsTruncate = hasOutcomes && visit.outcomes!.length > VISIBLE_OUTCOMES;
+
+  return (
+    <>
+      <article className="overflow-hidden rounded-2xl border border-border bg-card p-5 sm:p-6 md:p-7 shadow-sm transition-all duration-300 hover:border-border/80">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-stretch">
+          {/* Left side: Carousel as rounded rectangle */}
+          <div className="w-full md:w-1/2 lg:w-[48%] shrink-0">
+            <ImageCarousel images={visit.images} alt={visit.company} />
+          </div>
+
+          {/* Right side: Information & actions */}
+          <div className="flex flex-col justify-between flex-1 py-1">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">{visit.company}</h2>
+              <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                <span className="inline-flex items-center gap-2">
+                  <MapPin className="h-3.5 w-3.5 text-primary" />
+                  {visit.location}
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <CalendarDays className="h-3.5 w-3.5 text-primary" />
+                  {visit.date}
+                </span>
+              </div>
+
+              <h3 className="tech-label mt-6">Key learning outcomes</h3>
+              {hasOutcomes ? (
+                <div>
+                  <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                    {(needsTruncate ? visit.outcomes!.slice(0, VISIBLE_OUTCOMES) : visit.outcomes!).map((o) => (
+                      <li key={o} className="flex gap-3">
+                        <span className="shrink-0 text-primary">➣</span>
+                        {o}
+                      </li>
+                    ))}
+                  </ul>
+                  {needsTruncate && (
+                    <button
+                      type="button"
+                      onClick={() => setOutcomesOpen(true)}
+                      className="mt-3 text-sm text-primary hover:underline cursor-pointer"
+                    >
+                      Read more...
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <div className="mt-3 min-h-[1.5rem]" />
+              )}
             </div>
 
-            <h3 className="tech-label mt-6">Key learning outcomes</h3>
-            {visit.outcomes && visit.outcomes.length > 0 ? (
-              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
-                {visit.outcomes.map((o) => (
-                  <li key={o} className="flex gap-3">
-                    <span className="mt-2 h-px w-4 shrink-0 bg-primary" />
-                    {o}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <div className="mt-3 min-h-[1.5rem]" />
-            )}
-          </div>
-
-          {/* Download reports button in bottom right corner */}
-          <div className="mt-8 flex justify-end">
-            <a
-              href={visit.reportUrl || "#"}
-              download
-              className="inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-4 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary shadow-sm"
-            >
-              <Download className="h-4 w-4" />
-              Download Reports
-            </a>
+            {/* Single download button in bottom right corner */}
+            <div className="mt-8 flex justify-end">
+              {hasReports ? (
+                <button
+                  type="button"
+                  onClick={() => setDownloadOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-4 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary shadow-sm cursor-pointer"
+                >
+                  <Download className="h-4 w-4" />
+                  Download Reports
+                </button>
+              ) : (
+                <span className="text-sm text-muted-foreground">No reports available</span>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </article>
+      </article>
+
+      {/* Download dialog */}
+      <Dialog open={downloadOpen} onOpenChange={setDownloadOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Download Reports</DialogTitle>
+            <DialogDescription>Select a report to download.</DialogDescription>
+          </DialogHeader>
+          <div className="mt-2 space-y-3">
+            {visit.reports?.map((r) => (
+              <a
+                key={r.url}
+                href={r.url}
+                download
+                onClick={() => setDownloadOpen(false)}
+                className="flex items-center gap-3 rounded-sm border border-border bg-secondary/40 px-4 py-3 font-mono text-sm text-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                <FileText className="h-5 w-5 shrink-0 text-primary" />
+                {r.label}
+              </a>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Outcomes dialog */}
+      <Dialog open={outcomesOpen} onOpenChange={setOutcomesOpen}>
+        <DialogContent className="sm:max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Key Learning Outcomes</DialogTitle>
+            <DialogDescription>{visit.company}</DialogDescription>
+          </DialogHeader>
+          <ul className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
+            {visit.outcomes?.map((o) => (
+              <li key={o} className="flex gap-3">
+                <span className="shrink-0 text-primary">➣</span>
+                {o}
+              </li>
+            ))}
+          </ul>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
 

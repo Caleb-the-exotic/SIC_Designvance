@@ -35,7 +35,7 @@ function UploadPage() {
   const navigate = useNavigate();
 
   const [section, setSection] = useState<PostSection>("industry_visit");
-  const [techCategory, setTechCategory] = useState<TechCategory>("lesson");
+  const [techCategory, setTechCategory] = useState<TechCategory>("strength-of-materials");
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
   const [imageLink, setImageLink] = useState("");
@@ -119,7 +119,16 @@ function UploadPage() {
             <div>
               <span className="tech-label">Technology category</span>
               <div className="mt-3 flex flex-wrap gap-2">
-                {(["lesson", "common"] as const).map((c) => (
+                {(
+                  [
+                    "strength-of-materials",
+                    "fluid-dynamics",
+                    "fea",
+                    "cad-design",
+                    "simulation",
+                    "prototyping",
+                  ] as const
+                ).map((c) => (
                   <button
                     key={c}
                     type="button"
@@ -130,7 +139,17 @@ function UploadPage() {
                         : "border-border text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    {c === "lesson" ? "Lesson (PPTs)" : "Common"}
+                    {c === "strength-of-materials"
+                      ? "Strength of Materials"
+                      : c === "fluid-dynamics"
+                        ? "Fluid Dynamics"
+                        : c === "fea"
+                          ? "FEA"
+                          : c === "cad-design"
+                            ? "CAD Design"
+                            : c === "simulation"
+                              ? "Simulation"
+                              : "Prototyping"}
                   </button>
                 ))}
               </div>
@@ -138,12 +157,22 @@ function UploadPage() {
           )}
 
           <div>
-            <label htmlFor="title" className="tech-label">Title</label>
-            <input id="title" required value={title} onChange={(e) => setTitle(e.target.value)} className={inputClass} />
+            <label htmlFor="title" className="tech-label">
+              Title
+            </label>
+            <input
+              id="title"
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className={inputClass}
+            />
           </div>
 
           <div>
-            <label htmlFor="caption" className="tech-label">Caption</label>
+            <label htmlFor="caption" className="tech-label">
+              Caption
+            </label>
             <textarea
               id="caption"
               rows={3}
@@ -155,7 +184,9 @@ function UploadPage() {
 
           <div className="grid gap-6 md:grid-cols-2">
             <div>
-              <label htmlFor="imageFile" className="tech-label">Image file</label>
+              <label htmlFor="imageFile" className="tech-label">
+                Image file
+              </label>
               <input
                 id="imageFile"
                 type="file"
@@ -163,7 +194,9 @@ function UploadPage() {
                 onChange={(e) => setImageFile(e.target.files?.[0] ?? null)}
                 className={inputClass}
               />
-              <label htmlFor="imageLink" className="tech-label mt-4 block">or image link</label>
+              <label htmlFor="imageLink" className="tech-label mt-4 block">
+                or image link
+              </label>
               <input
                 id="imageLink"
                 type="url"
@@ -174,7 +207,9 @@ function UploadPage() {
               />
             </div>
             <div>
-              <label htmlFor="pptFile" className="tech-label">PPT file</label>
+              <label htmlFor="pptFile" className="tech-label">
+                PPT file
+              </label>
               <input
                 id="pptFile"
                 type="file"
@@ -182,7 +217,9 @@ function UploadPage() {
                 onChange={(e) => setPptFile(e.target.files?.[0] ?? null)}
                 className={inputClass}
               />
-              <label htmlFor="pptLink" className="tech-label mt-4 block">or PPT link</label>
+              <label htmlFor="pptLink" className="tech-label mt-4 block">
+                or PPT link
+              </label>
               <input
                 id="pptLink"
                 type="url"

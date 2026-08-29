@@ -9,6 +9,7 @@ import logo from "@/assets/integris-logo.png";
 const links = [
   { to: "/", label: "Home" },
   { to: "/team", label: "Our Team" },
+  { to: "/technology", label: "Technology" },
   { to: "/industry-visit", label: "Industry Visit" },
 ] as const;
 

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Box, Cpu, Layers3, Printer, Ruler, Waves } from "lucide-react";
+import { Box, Cpu, Layers3, Printer, Ruler, Waves, Download, ExternalLink } from "lucide-react";
 import { PageHero } from "@/components/site/page-hero";
 import { UploadedPosts } from "@/components/site/uploaded-posts";
 import type { TechCategory } from "@/lib/posts";
@@ -65,20 +65,83 @@ const areas = [
 
 const techTabs: { value: TechCategory; label: string; blurb: string }[] = [
   {
-    value: "lesson",
-    label: "Lessons (PPTs)",
-    blurb: "Session decks and teaching material shared by INTEGRIS members.",
+    value: "strength-of-materials",
+    label: "Strength of Materials",
+    blurb: "Session decks and teaching material on stress, strain, bending and fatigue.",
   },
   {
-    value: "common",
-    label: "Common",
-    blurb: "General technology resources, notes and references for the whole wing.",
+    value: "fluid-dynamics",
+    label: "Fluid Dynamics",
+    blurb: "Resources covering fluid mechanics, flow analysis and CFD fundamentals.",
+  },
+  {
+    value: "fea",
+    label: "FEA",
+    blurb: "Finite element analysis study material and mesh convergence references.",
+  },
+  {
+    value: "cad-design",
+    label: "CAD Design",
+    blurb: "Parametric modelling, assemblies and GD&T teaching resources.",
+  },
+  {
+    value: "simulation",
+    label: "Simulation",
+    blurb: "Motion, thermal and multiphysics simulation material.",
+  },
+  {
+    value: "prototyping",
+    label: "Prototyping",
+    blurb: "3D printing, FDM techniques and design-for-manufacture resources.",
   },
 ];
 
+type StaticResource = {
+  title: string;
+  caption: string;
+  downloadUrl: string;
+  viewUrl: string;
+};
+
+const staticResources: Record<TechCategory, StaticResource[]> = {
+  "strength-of-materials": [
+    {
+      title: "Thin & Thick Cylinders",
+      caption:
+        "Covers thin and thick cylinder theory under internal pressure. Topics include hoop and longitudinal stress in thin cylinders, Lamé's equations for radial and hoop stress distributions in thick cylinders, and worked examples on compound cylinders.",
+      downloadUrl: "/SOM/Thin_and_Thick_Cylinders.pptx",
+      viewUrl: "/SOM/Thin_and_Thick_Cylinders.pdf",
+    },
+  ],
+  "fluid-dynamics": [],
+  fea: [],
+  "cad-design": [],
+  simulation: [],
+  prototyping: [],
+};
+
+const QUIZ_URL = "https://wayground.com/join?gc=31651077";
+
 function Technology() {
-  const [tab, setTab] = useState<TechCategory>("lesson");
+  const [tab, setTab] = useState<TechCategory>("strength-of-materials");
+  const [carouselIndex, setCarouselIndex] = useState(0);
   const active = techTabs.find((t) => t.value === tab)!;
+  const total = areas.length;
+  const infiniteAreas = [...areas, ...areas];
+
+  const advance = useCallback(() => {
+    setCarouselIndex((i) => {
+      if (i >= total - 1) return 0;
+      return i + 1;
+    });
+  }, [total]);
+
+  useEffect(() => {
+    const id = setInterval(advance, 10000);
+    return () => clearInterval(id);
+  }, [advance]);
+
+  const resources = staticResources[tab] ?? [];
 
   return (
     <>
@@ -89,32 +152,53 @@ function Technology() {
       />
 
       <section className="mx-auto max-w-7xl px-5 py-20">
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {areas.map(({ Icon, title, text, tools }) => (
-            <article
-              key={title}
-              className="hover-lift group relative overflow-hidden rounded-sm border border-border bg-card p-7"
+        <div className="relative">
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${carouselIndex * 33.333}%)` }}
             >
-              <div className="blueprint-grid pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <div className="relative">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-primary/40 bg-primary/10">
-                  <Icon className="h-5 w-5 text-primary" />
-                </span>
-                <h2 className="mt-6 text-lg font-semibold">{title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {tools.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-sm border border-border px-2.5 py-1 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground"
-                    >
-                      {t}
-                    </span>
-                  ))}
+              {infiniteAreas.map(({ Icon, title, text, tools }, idx) => (
+                <div key={`${title}-${idx}`} className="w-1/3 shrink-0 px-2.5">
+                  <article className="group relative h-full overflow-hidden rounded-sm border border-border bg-card p-7">
+                    <div className="blueprint-grid pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className="relative">
+                      <span className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-primary/40 bg-primary/10">
+                        <Icon className="h-5 w-5 text-primary" />
+                      </span>
+                      <h2 className="mt-6 text-lg font-semibold">{title}</h2>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {tools.map((t) => (
+                          <span
+                            key={t}
+                            className="rounded-sm border border-border px-2.5 py-1 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-muted-foreground"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
                 </div>
-              </div>
-            </article>
-          ))}
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 flex justify-center gap-2">
+            {areas.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setCarouselIndex(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${i === carouselIndex
+                    ? "w-6 bg-primary"
+                    : "w-2 bg-foreground/30 hover:bg-foreground/60"
+                  }`}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="mt-20">
@@ -128,11 +212,10 @@ function Technology() {
                 type="button"
                 onClick={() => setTab(t.value)}
                 aria-pressed={tab === t.value}
-                className={`rounded-sm border px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] transition-colors ${
-                  tab === t.value
+                className={`rounded-sm border px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] transition-colors ${tab === t.value
                     ? "border-primary bg-primary text-primary-foreground"
                     : "border-border text-muted-foreground hover:border-primary hover:text-primary"
-                }`}
+                  }`}
               >
                 {t.label}
               </button>
@@ -142,11 +225,66 @@ function Technology() {
           <p className="mt-4 text-sm text-muted-foreground">{active.blurb}</p>
 
           <div className="mt-8">
-            <UploadedPosts
-              section="technology"
-              techCategory={tab}
-              emptyText="Nothing uploaded in this category yet."
-            />
+            {resources.length > 0 ? (
+              <div className="space-y-6">
+                {resources.map((r) => (
+                  <article
+                    key={r.title}
+                    className="group overflow-hidden rounded-xl border border-border bg-card"
+                  >
+                    <div className="flex flex-col md:flex-row min-h-[140px]">
+                      <div className="flex flex-col justify-between p-6 md:w-3/4">
+                        <div>
+                          <h3 className="text-xl font-semibold">{r.title}</h3>
+                          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                            {r.caption}
+                          </p>
+                        </div>
+                        <div className="mt-5 flex flex-wrap gap-3">
+                          <a
+                            href={r.downloadUrl}
+                            download
+                            className="inline-flex items-center gap-2 rounded-full border border-white/70 px-5 py-2 font-mono text-[0.75rem] uppercase tracking-[0.16em] text-white transition-all duration-200 hover:bg-white hover:text-black hover:border-white"
+                          >
+                            <Download className="h-4 w-4" />
+                            Download
+                          </a>
+                          <a
+                            href={r.viewUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full border border-white/70 px-5 py-2 font-mono text-[0.75rem] uppercase tracking-[0.16em] text-white transition-all duration-200 hover:bg-white hover:text-black hover:border-white"
+                          >
+                            Read
+                          </a>
+                          <a
+                            href={QUIZ_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full border border-white/70 px-5 py-2 font-mono text-[0.75rem] uppercase tracking-[0.16em] text-white transition-all duration-200 hover:bg-white hover:text-black hover:border-white"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            Take Quiz
+                          </a>
+                        </div>
+                      </div>
+                      <div className="md:w-1/4 rounded-xl m-3 overflow-hidden bg-secondary/40 border border-border/50">
+                        <img
+                          src="https://images.unsplash.com/photo-1667858329757-95becd82346e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                          alt={`${r.title} preview`}
+                          className="h-full w-full object-cover"
+                          style={{ minHeight: "120px" }}
+                        />
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-muted-foreground">
+                Nothing uploaded in this category yet.
+              </p>
+            )}
           </div>
         </div>
       </section>

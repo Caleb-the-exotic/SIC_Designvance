@@ -1,5 +1,5 @@
 CREATE TYPE public.post_section AS ENUM ('industry_visit','technology','project');
-CREATE TYPE public.tech_category AS ENUM ('lesson','common');
+CREATE TYPE public.tech_category AS ENUM ('strength-of-materials','fluid-dynamics','fea','cad-design','simulation','prototyping');
 
 CREATE TABLE public.posts (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),

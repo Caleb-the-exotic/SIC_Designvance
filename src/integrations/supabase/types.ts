@@ -197,7 +197,7 @@ export const Constants = {
   public: {
     Enums: {
       post_section: ["industry_visit", "technology", "project"],
-      tech_category: ["lesson", "common"],
+      tech_category: ["strength-of-materials", "fluid-dynamics", "fea", "cad-design", "simulation", "prototyping"],
     },
   },
 } as const

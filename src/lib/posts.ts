@@ -1,7 +1,8 @@
 import { supabase } from "@/integrations/supabase/client";
 
 export type PostSection = "industry_visit" | "technology" | "project";
-export type TechCategory = "lesson" | "common";
+export type TechCategory =
+  "strength-of-materials" | "fluid-dynamics" | "fea" | "cad-design" | "simulation" | "prototyping";
 
 export type Post = {
   id: string;
