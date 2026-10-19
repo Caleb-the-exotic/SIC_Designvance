@@ -77,7 +77,7 @@ function Contact() {
             {/* Left column in desktop: Name, Email, Subject */}
             <div className="flex flex-col gap-5">
               <div>
-                <label htmlFor="name" className="font-mono text-sm font-bold italic uppercase tracking-[0.18em] text-primary">
+                <label htmlFor="name" className="font-mono text-sm font-normal italic uppercase tracking-[0.18em] text-primary">
                   Name
                 </label>
                 <input
@@ -90,7 +90,7 @@ function Contact() {
               </div>
 
               <div>
-                <label htmlFor="email" className="font-mono text-sm font-bold italic uppercase tracking-[0.18em] text-primary">
+                <label htmlFor="email" className="font-mono text-sm font-normal italic uppercase tracking-[0.18em] text-primary">
                   Email
                 </label>
                 <input
@@ -104,7 +104,7 @@ function Contact() {
               </div>
 
               <div>
-                <label htmlFor="subject" className="font-mono text-sm font-bold italic uppercase tracking-[0.18em] text-primary">
+                <label htmlFor="subject" className="font-mono text-sm font-normal italic uppercase tracking-[0.18em] text-primary">
                   Subject
                 </label>
                 <input
@@ -119,7 +119,7 @@ function Contact() {
 
             {/* Right column in desktop: Message */}
             <div className="flex flex-col">
-              <label htmlFor="message" className="font-mono text-sm font-bold italic uppercase tracking-[0.18em] text-primary">
+              <label htmlFor="message" className="font-mono text-sm font-normal italic uppercase tracking-[0.18em] text-primary">
                 Message
               </label>
               <textarea
@@ -138,7 +138,7 @@ function Contact() {
             <button
               type="submit"
               disabled={sending}
-              className="w-full sm:w-auto inline-flex items-center justify-center rounded-sm bg-primary px-8 py-3.5 font-mono text-sm font-bold italic uppercase tracking-[0.18em] text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+              className="w-full sm:w-auto inline-flex items-center justify-center rounded-sm bg-primary px-8 py-3.5 font-mono text-sm font-normal italic uppercase tracking-[0.18em] text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:opacity-60"
             >
               {sending ? "Sending…" : "Send message"}
             </button>

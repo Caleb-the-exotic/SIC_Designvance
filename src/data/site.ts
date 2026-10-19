@@ -102,8 +102,10 @@ export const visits: Visit[] = [
       "/IV/AIRAA Engineering works & Kiruthiga Industries/3.jpeg",
     ],
     reports: [
-      { label: "AIRAA Engineering Report", url: "/IV/AIRAA Engineering works & Kiruthiga Industries/Industrial_Visit_Report_Airaa_Engineering.pdf" },
-      { label: "Kiruthiga Industries Report", url: "/IV/AIRAA Engineering works & Kiruthiga Industries/INDUSTRIAL VISIT REPORT_Kiruthiga Industries.pdf" },
+      {
+        label: "IV Report",
+        url: "/IV/iv-report.pdf",
+      },
     ],
     outcomes: [
       "Understanding of CNC turning and milling operations",
