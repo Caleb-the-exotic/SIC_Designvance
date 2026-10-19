@@ -5,13 +5,13 @@ import WebThreads from "@/components/WebThreads";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "INTEGRIS — Engineering Strength. Designing the Future." },
+      { title: "Designvance — Engineering Strength. Designing the Future." },
       {
         name: "description",
         content:
-          "INTEGRIS, the Design Wing of the Student Innovation Club: strength of materials, structural analysis, FEA and innovative mechanical design.",
+          "Designvance, the Design Wing of the Student Innovation Club: strength of materials, structural analysis, FEA and innovative mechanical design.",
       },
-      { property: "og:title", content: "INTEGRIS — Engineering Strength. Designing the Future." },
+      { property: "og:title", content: "Designvance — Engineering Strength. Designing the Future." },
       {
         property: "og:description",
         content: "Structural design, simulation and prototyping by the SIC Design Wing.",
@@ -79,13 +79,13 @@ function Index() {
               Engineering Strength. <span className="text-primary">Designing the Future.</span>
             </h1>
           </div>
-          <div className="my-auto flex items-center justify-center pt-4 sm:pt-8 pb-2">
+          <div className="my-auto flex items-center justify-center -mt-3 sm:-mt-6 pb-2">
             <img
-              src="/Integris%202.png"
-              alt="INTEGRIS logo"
-              width={800}
-              height={400}
-              className="rise-in h-60 w-auto object-contain sm:h-72 md:h-80 lg:h-[26rem]"
+              src="/Designvance%20Final.png"
+              alt="Designvance logo"
+              width={900}
+              height={450}
+              className="rise-in h-68 w-auto object-contain sm:h-80 md:h-96 lg:h-[30rem] xl:h-[32rem]"
             />
           </div>
         </div>
@@ -95,7 +95,7 @@ function Index() {
         <div className="relative mx-auto max-w-7xl px-5 py-20 md:py-28">
           <p className="tech-label">What we do</p>
           <h2 className="rule-accent mt-4 max-w-2xl text-3xl font-bold md:text-4xl">
-            Four disciplines, one design process
+            Many disciplines, one design process
           </h2>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
             We are the design and analysis core of the Student Innovation Club — turning material
@@ -143,7 +143,7 @@ function Index() {
             type="button"
             className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 font-mono text-xs uppercase tracking-[0.18em] text-primary-foreground cursor-default"
           >
-            Contact INTEGRIS
+            Contact Designvance
             <ArrowRight className="h-4 w-4" />
           </button>
         </div>

@@ -71,9 +71,9 @@ export const members: TeamMember[] = [
 ];
 
 export const mentor: Mentor = {
-  name: "P.T.Saravanakumar",
-  role: "Mentor / HOD",
-  department: "Department: Mechanical Engineering",
+  name: "Dr. P.T.Saravanakumar",
+  role: "Mentor",
+  department: "Head of Department of Mechanical Engineering",
   institution: "Sri Ramakrishna Institute of Technology",
   photo: "/Members/PTS.jpeg",
   linkedin:

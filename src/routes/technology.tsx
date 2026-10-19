@@ -8,16 +8,16 @@ import type { TechCategory } from "@/lib/posts";
 export const Route = createFileRoute("/technology")({
   head: () => ({
     meta: [
-      { title: "Technology & Tools — INTEGRIS Design Wing" },
+      { title: "Technology & Tools — Designvance Design Wing" },
       {
         name: "description",
         content:
-          "CAD, finite element analysis, structural analysis, strength of materials, simulation and 3D printing — the engineering toolkit of INTEGRIS.",
+          "CAD, finite element analysis, structural analysis, strength of materials, simulation and 3D printing — the engineering toolkit of Designvance.",
       },
-      { property: "og:title", content: "Technology — INTEGRIS" },
+      { property: "og:title", content: "Technology — Designvance" },
       {
         property: "og:description",
-        content: "The engineering tools and methods behind every INTEGRIS design.",
+        content: "The engineering tools and methods behind every Designvance design.",
       },
     ],
   }),
@@ -124,20 +124,33 @@ const QUIZ_URL = "https://wayground.com/join?gc=31651077";
 
 function Technology() {
   const [tab, setTab] = useState<TechCategory>("strength-of-materials");
+  // carouselIndex goes 0..total (inclusive), where index=total means the cloned first 3 slides
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [transitioning, setTransitioning] = useState(true);
   const active = techTabs.find((t) => t.value === tab)!;
-  const total = areas.length;
-  const infiniteAreas = [...areas, ...areas];
+  const total = areas.length; // 6
+  // Append 3 clones at the end so we can slide into them, then silently jump back
+  const infiniteAreas = [...areas, ...areas.slice(0, 3)];
 
   const advance = useCallback(() => {
-    setCarouselIndex((i) => {
-      if (i >= total - 1) return 0;
-      return i + 1;
-    });
-  }, [total]);
+    setTransitioning(true);
+    setCarouselIndex((i) => i + 1);
+  }, []);
+
+  // When we land on the cloned section (index >= total), silently jump back
+  useEffect(() => {
+    if (carouselIndex >= total) {
+      // Wait for transition to finish, then jump without animation
+      const id = setTimeout(() => {
+        setTransitioning(false);
+        setCarouselIndex(carouselIndex - total);
+      }, 500);
+      return () => clearTimeout(id);
+    }
+  }, [carouselIndex, total]);
 
   useEffect(() => {
-    const id = setInterval(advance, 10000);
+    const id = setInterval(advance, 4000);
     return () => clearInterval(id);
   }, [advance]);
 
@@ -148,15 +161,18 @@ function Technology() {
       <PageHero
         label="Technology"
         title="The toolkit behind every design"
-        description="A design only counts once it survives analysis. These are the methods and tools INTEGRIS uses across the full loop — from first sketch to tested prototype."
+        description="A design only counts once it survives analysis. These are the methods and tools Designvance uses across the full loop — from first sketch to tested prototype."
       />
 
       <section className="mx-auto max-w-7xl px-5 py-20">
         <div className="relative">
           <div className="overflow-hidden">
             <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${carouselIndex * 33.333}%)` }}
+              className="flex"
+              style={{
+                transform: `translateX(-${carouselIndex * 33.333}%)`,
+                transition: transitioning ? "transform 500ms ease-in-out" : "none",
+              }}
             >
               {infiniteAreas.map(({ Icon, title, text, tools }, idx) => (
                 <div key={`${title}-${idx}`} className="w-1/3 shrink-0 px-2.5">
@@ -190,12 +206,13 @@ function Technology() {
               <button
                 key={i}
                 type="button"
-                onClick={() => setCarouselIndex(i)}
+                onClick={() => { setTransitioning(true); setCarouselIndex(i); }}
                 aria-label={`Go to slide ${i + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${i === carouselIndex
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  (carouselIndex % total) === i
                     ? "w-6 bg-primary"
                     : "w-2 bg-foreground/30 hover:bg-foreground/60"
-                  }`}
+                }`}
               />
             ))}
           </div>
@@ -203,7 +220,7 @@ function Technology() {
 
         <div className="mt-20">
           <p className="tech-label">Resources</p>
-          <h2 className="mt-3 text-2xl font-bold md:text-3xl">Uploaded technology material</h2>
+          <h2 className="mt-3 text-2xl font-bold md:text-3xl">Study material</h2>
 
           <div className="mt-6 flex flex-wrap gap-2">
             {techTabs.map((t) => (

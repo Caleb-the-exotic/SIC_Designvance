@@ -7,16 +7,16 @@ import { UploadedPosts } from "@/components/site/uploaded-posts";
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Projects — INTEGRIS Design Wing" },
+      { title: "Projects — Designvance Design Wing" },
       {
         name: "description",
         content:
-          "Structural, mechanical, simulation and prototyping projects designed and analysed by the INTEGRIS Design Wing.",
+          "Structural, mechanical, simulation and prototyping projects designed and analysed by the Designvance Design Wing.",
       },
-      { property: "og:title", content: "Projects — INTEGRIS" },
+      { property: "og:title", content: "Projects — Designvance" },
       {
         property: "og:description",
-        content: "Design studies, analysis work and built prototypes from INTEGRIS.",
+        content: "Design studies, analysis work and built prototypes from Designvance.",
       },
     ],
   }),

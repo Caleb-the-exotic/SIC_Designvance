@@ -81,14 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "INTEGRIS — Design Wing of the Student Innovation Club" },
+      { title: "Designvance — Design Wing of the Student Innovation Club" },
       {
         name: "description",
         content:
-          "INTEGRIS is the Design Wing of the Student Innovation Club, working on strength of materials, structural analysis and mechanical design.",
+          "Designvance is the Design Wing of the Student Innovation Club, working on strength of materials, structural analysis and mechanical design.",
       },
-      { name: "author", content: "INTEGRIS" },
-      { property: "og:title", content: "INTEGRIS — Engineering Strength. Designing the Future." },
+      { name: "author", content: "Designvance" },
+      { property: "og:title", content: "Designvance — Engineering Strength. Designing the Future." },
       {
         property: "og:description",
         content: "Structural design, FEA and mechanical innovation by the SIC Design Wing.",
@@ -101,7 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "icon", href: "/Designvance%20Minimal.png", type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

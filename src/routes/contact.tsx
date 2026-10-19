@@ -7,16 +7,16 @@ import { PageHero } from "@/components/site/page-hero";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact INTEGRIS — Design Wing of the Student Innovation Club" },
+      { title: "Contact Designvance — Design Wing of the Student Innovation Club" },
       {
         name: "description",
         content:
-          "Get in touch with INTEGRIS for design collaborations, structural analysis support or to join the Design Wing.",
+          "Get in touch with Designvance for design collaborations, structural analysis support or to join the Design Wing.",
       },
-      { property: "og:title", content: "Contact INTEGRIS" },
+      { property: "og:title", content: "Contact Designvance" },
       {
         property: "og:description",
-        content: "Reach the INTEGRIS Design Wing for collaborations and membership.",
+        content: "Reach the Designvance Design Wing for collaborations and membership.",
       },
     ],
   }),
@@ -37,7 +37,7 @@ function Contact() {
       setSending(false);
       form.reset();
       toast.success("Message ready to send", {
-        description: "Thanks for reaching out — the INTEGRIS team will get back to you.",
+        description: "Thanks for reaching out — the Designvance team will get back to you.",
       });
     }, 600);
   }
@@ -57,7 +57,7 @@ function Contact() {
             <ul className="mt-5 space-y-4 text-sm text-muted-foreground">
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 text-primary" />
-                integris.sic@gmail.com
+                designvance.sic@gmail.com
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-4 w-4 text-primary" />

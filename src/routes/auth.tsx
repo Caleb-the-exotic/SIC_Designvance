@@ -9,14 +9,14 @@ import { PageHero } from "@/components/site/page-hero";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Member Login — INTEGRIS Design Wing" },
+      { title: "Member Login — Designvance Design Wing" },
       {
         name: "description",
         content:
-          "Sign in to the INTEGRIS member area to upload industry visits, technology lessons and project entries.",
+          "Sign in to the Designvance member area to upload industry visits, technology lessons and project entries.",
       },
-      { property: "og:title", content: "Member Login — INTEGRIS" },
-      { property: "og:description", content: "INTEGRIS member sign in and content upload." },
+      { property: "og:title", content: "Member Login — Designvance" },
+      { property: "og:description", content: "Designvance member sign in and content upload." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -74,7 +74,7 @@ function AuthPage() {
     <>
       <PageHero
         label="Member Access"
-        title="Sign in to the INTEGRIS console"
+        title="Sign in to the Designvance console"
         description="Members can log in to publish industry visits, technology lessons and project entries with images and presentations."
       />
       <section className="mx-auto max-w-md px-5 py-16">

@@ -8,13 +8,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 export const Route = createFileRoute("/industry-visit")({
   head: () => ({
     meta: [
-      { title: "Industry Visits — INTEGRIS Design Wing" },
+      { title: "Industry Visits — Designvance Design Wing" },
       {
         name: "description",
         content:
-          "Industry visits conducted by INTEGRIS: fabrication plants, machining lines and the engineering lessons our members brought back.",
+          "Industry visits conducted by Designvance: fabrication plants, machining lines and the engineering lessons our members brought back.",
       },
-      { property: "og:title", content: "Industry Visits — INTEGRIS" },
+      { property: "og:title", content: "Industry Visits — Designvance" },
       {
         property: "og:description",
         content: "Where we went, what we saw and what it changed in our designs.",

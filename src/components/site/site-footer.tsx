@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { Github, Instagram, Linkedin, Mail } from "lucide-react";
-import logo from "@/assets/integris-logo.png";
 
 export function SiteFooter() {
   return (
@@ -9,14 +8,14 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-3">
             <img
-              src={logo}
-              alt="INTEGRIS logo"
+              src="/Designvance%20Minimal.png"
+              alt="Designvance logo"
               width={36}
               height={36}
               loading="lazy"
               className="h-9 w-9 object-contain"
             />
-            <span className="font-display text-lg font-bold tracking-[0.18em]">INTEGRIS</span>
+            <span className="font-display text-lg font-bold tracking-normal">Designvance</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
             The Design Wing of the Student Innovation Club — strength of materials, structural
@@ -61,11 +60,11 @@ export function SiteFooter() {
               </a>
             ))}
           </div>
-          <p className="mt-4 font-mono text-xs text-muted-foreground">integris.sic@gmail.com</p>
+          <p className="mt-4 font-mono text-xs text-muted-foreground">designvance.sic@gmail.com</p>
         </div>
       </div>
       <div className="border-t border-border/60 px-5 py-5 text-center font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-        © {new Date().getFullYear()} INTEGRIS · Design Wing, Student Innovation Club
+        © {new Date().getFullYear()} Designvance · Design Wing, Student Innovation Club
       </div>
     </footer>
   );

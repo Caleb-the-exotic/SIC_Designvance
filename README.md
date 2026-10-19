@@ -1,6 +1,6 @@
-# INTEGRIS Design Hub
+# Designvance Design Hub
 
-Create a modern, premium and responsive website for INTEGRIS, the Design Wing of the Student Innovation Club (SIC), specializing in Strength of Materials, structural design, engineering analysis and innovative mechanical design.
+Create a modern, premium and responsive website for Designvance, the Design Wing of the Student Innovation Club (SIC), specializing in Strength of Materials, structural design, engineering analysis and innovative mechanical design.
 
 Website Navigation
 
@@ -8,7 +8,7 @@ Create the following sections/pages with smooth navigation:
 
 Home
 
-Strong hero section introducing INTEGRIS.
+Strong hero section introducing Designvance.
 
 Tagline: “Engineering Strength. Designing the Future.”
 
@@ -16,11 +16,11 @@ Brief introduction to the Design Wing.
 
 Prominent CTA buttons such as Explore Projects and Meet Our Team.
 
-Use the INTEGRIS logo prominently.
+Use the Designvance logo prominently.
 
 About
 
-Explain what INTEGRIS is.
+Explain what Designvance is.
 
 Mention that it is the Design Wing of the Student Innovation Club.
 
@@ -38,7 +38,7 @@ Create a layout that can easily be updated with additional members.
 
 Industry Visit
 
-Showcase industry visits conducted by INTEGRIS.
+Showcase industry visits conducted by Designvance.
 
 Include company name, location, date, images and key learning outcomes.
 
@@ -46,7 +46,7 @@ Use a timeline or interactive card layout.
 
 Technology
 
-Showcase the technologies and engineering tools used by INTEGRIS.
+Showcase the technologies and engineering tools used by Designvance.
 
 Include areas such as:
 
@@ -76,7 +76,7 @@ Make it easy to add new projects later.
 
 Contact
 
-Provide contact information for INTEGRIS.
+Provide contact information for Designvance.
 
 Include a contact form with Name, Email, Subject and Message.
 

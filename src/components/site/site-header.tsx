@@ -4,7 +4,6 @@ import { useQueryClient } from "@tanstack/react-query";
 import { LogIn, Menu, Upload, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
-import logo from "@/assets/integris-logo.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -32,15 +31,15 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3.5">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <img
-            src={logo}
-            alt="INTEGRIS logo"
+            src="/Designvance%20Minimal.png"
+            alt="Designvance logo"
             width={40}
             height={40}
             className="h-10 w-10 object-contain"
           />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-lg font-bold tracking-[0.18em] text-foreground">
-              INTEGRIS
+            <span className="font-display text-lg font-bold tracking-normal text-foreground">
+              Designvance
             </span>
             <span className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted-foreground">
               Design Wing · SIC
@@ -92,7 +91,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="border-t border-border bg-background/95 px-5 py-3 lg:hidden">
+        <nav className="absolute left-0 right-0 top-full border-b border-border bg-background/95 backdrop-blur-xl px-5 py-3 shadow-2xl lg:hidden">
           {links.map((l) => (
             <Link
               key={l.to}

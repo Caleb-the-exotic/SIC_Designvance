@@ -6,16 +6,16 @@ import { leadership, members, mentor } from "@/data/site";
 export const Route = createFileRoute("/team")({
   head: () => ({
     meta: [
-      { title: "Our Team — INTEGRIS Design Wing" },
+      { title: "Our Team — Designvance Design Wing" },
       {
         name: "description",
         content:
-          "Meet the designers, analysts and makers behind INTEGRIS, the Design Wing of the Student Innovation Club.",
+          "Meet the designers, analysts and makers behind Designvance, the Design Wing of the Student Innovation Club.",
       },
-      { property: "og:title", content: "Our Team — INTEGRIS" },
+      { property: "og:title", content: "Our Team — Designvance" },
       {
         property: "og:description",
-        content: "The engineers leading structural design, FEA and prototyping at INTEGRIS.",
+        content: "The engineers leading structural design, FEA and prototyping at Designvance.",
       },
     ],
   }),

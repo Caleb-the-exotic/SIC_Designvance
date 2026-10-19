@@ -9,14 +9,14 @@ import { uploadFile, type PostSection, type TechCategory } from "@/lib/posts";
 export const Route = createFileRoute("/upload")({
   head: () => ({
     meta: [
-      { title: "Upload Content — INTEGRIS Design Wing" },
+      { title: "Upload Content — Designvance Design Wing" },
       {
         name: "description",
         content:
           "Member console for publishing industry visits, technology lessons and projects with images, presentations and captions.",
       },
-      { property: "og:title", content: "Upload Content — INTEGRIS" },
-      { property: "og:description", content: "Publish INTEGRIS visits, lessons and projects." },
+      { property: "og:title", content: "Upload Content — Designvance" },
+      { property: "og:description", content: "Publish Designvance visits, lessons and projects." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

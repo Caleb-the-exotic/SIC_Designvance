@@ -5,13 +5,13 @@ import { PageHero } from "@/components/site/page-hero";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About INTEGRIS — Design Wing of the Student Innovation Club" },
+      { title: "About Designvance — Design Wing of the Student Innovation Club" },
       {
         name: "description",
         content:
-          "INTEGRIS is the Design Wing of the Student Innovation Club, focused on strength of materials, structural analysis, mechanical design and practical engineering.",
+          "Designvance is the Design Wing of the Student Innovation Club, focused on strength of materials, structural analysis, mechanical design and practical engineering.",
       },
-      { property: "og:title", content: "About INTEGRIS" },
+      { property: "og:title", content: "About Designvance" },
       {
         property: "og:description",
         content: "Our vision, mission and core values as the SIC Design Wing.",
@@ -34,7 +34,7 @@ function About() {
       <PageHero
         label="About"
         title="The Design Wing of the Student Innovation Club"
-        description="INTEGRIS exists to give the Student Innovation Club a dedicated engineering design core — a group that takes an idea from free-body diagram to validated, manufacturable hardware."
+        description="Designvance exists to give the Student Innovation Club a dedicated engineering design core — a group that takes an idea from free-body diagram to validated, manufacturable hardware."
       />
 
       <section className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-2">
@@ -51,7 +51,7 @@ function About() {
             test. That loop is what separates a sketch from an engineered design.
           </p>
           <p className="text-base leading-relaxed">
-            Beyond projects, INTEGRIS runs internal workshops, design reviews and industry visits so
+            Beyond projects, Designvance runs internal workshops, design reviews and industry visits so
             members see how the theory in a textbook is applied on a real shop floor.
           </p>
         </div>
