@@ -48,6 +48,7 @@ function Index() {
   return (
     <>
       <section className="relative flex min-h-svh overflow-hidden border-b border-border">
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 h-full w-[100vw] min-w-[1400px]">
           <WebThreads
             color1="#FF6A00"
@@ -139,13 +140,13 @@ function Index() {
               design challenges.
             </p>
           </div>
-          <button
-            type="button"
-            className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 font-mono text-xs uppercase tracking-[0.18em] text-primary-foreground cursor-default"
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 font-mono text-xs uppercase tracking-[0.18em] text-primary-foreground transition-transform hover:-translate-y-0.5"
           >
             Contact Designvance
             <ArrowRight className="h-4 w-4" />
-          </button>
+          </Link>
         </div>
       </section>
     </>

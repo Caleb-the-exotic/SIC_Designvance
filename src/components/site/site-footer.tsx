@@ -25,20 +25,33 @@ export function SiteFooter() {
 
         <div>
           <h3 className="tech-label">Navigate</h3>
-          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            {[
-              { to: "/", label: "Home" },
-              { to: "/team", label: "Our Team" },
-              { to: "/technology", label: "Technology" },
-              { to: "/industry-visit", label: "Industry Visit" },
-            ].map((l) => (
-              <li key={l.to}>
-                <Link to={l.to} className="transition-colors hover:text-primary">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-4 grid grid-cols-2 gap-x-6 text-sm text-muted-foreground">
+            <ul className="space-y-2">
+              {[
+                { to: "/", label: "Home" },
+                { to: "/team", label: "Our Team" },
+                { to: "/technology", label: "Technology" },
+                { to: "/industry-visit", label: "Industry Visit" },
+              ].map((l) => (
+                <li key={l.to}>
+                  <Link to={l.to} className="transition-colors hover:text-primary">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <ul className="space-y-2">
+              {[
+                { to: "/contact", label: "Contact" },
+              ].map((l) => (
+                <li key={l.to}>
+                  <Link to={l.to} className="transition-colors hover:text-primary">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div>
@@ -60,7 +73,6 @@ export function SiteFooter() {
               </a>
             ))}
           </div>
-          <p className="mt-4 font-mono text-xs text-muted-foreground">designvance.sic@gmail.com</p>
         </div>
       </div>
       <div className="border-t border-border/60 px-5 py-5 text-center font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">

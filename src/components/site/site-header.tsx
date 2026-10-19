@@ -10,6 +10,7 @@ const links = [
   { to: "/team", label: "Our Team" },
   { to: "/technology", label: "Technology" },
   { to: "/industry-visit", label: "Industry Visit" },
+  { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {

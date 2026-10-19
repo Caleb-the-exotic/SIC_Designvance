@@ -132,6 +132,17 @@ function Technology() {
   // Append 3 clones at the end so we can slide into them, then silently jump back
   const infiniteAreas = [...areas, ...areas.slice(0, 3)];
 
+  // Detect mobile screen for 1 item (100%) vs 3 items (33.333%) per slide
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+
   const advance = useCallback(() => {
     setTransitioning(true);
     setCarouselIndex((i) => i + 1);
@@ -170,12 +181,12 @@ function Technology() {
             <div
               className="flex"
               style={{
-                transform: `translateX(-${carouselIndex * 33.333}%)`,
+                transform: `translateX(-${carouselIndex * (isMobile ? 100 : 33.333)}%)`,
                 transition: transitioning ? "transform 500ms ease-in-out" : "none",
               }}
             >
               {infiniteAreas.map(({ Icon, title, text, tools }, idx) => (
-                <div key={`${title}-${idx}`} className="w-1/3 shrink-0 px-2.5">
+                <div key={`${title}-${idx}`} className="w-full md:w-1/3 shrink-0 px-2.5">
                   <article className="group relative h-full overflow-hidden rounded-sm border border-border bg-card p-7">
                     <div className="blueprint-grid pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                     <div className="relative">
