@@ -74,10 +74,11 @@ function Index() {
             mouseStrength={0.3}
           />
         </div>
-        <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-5 py-8 sm:py-12 my-auto">
-          <div className="max-w-4xl text-center pb-8 sm:pb-10">
-            <h1 className="rise-in font-hero text-2xl uppercase leading-[1.05] tracking-wide drop-shadow-[0_3px_10px_rgba(0,0,0,0.9)] sm:whitespace-nowrap sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl sm:leading-[0.9]">
-              Engineering Strength. <span className="text-primary">Designing the Future.</span>
+        <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-5 pt-6 pb-10 sm:py-12 my-auto -translate-y-3 sm:translate-y-0">
+          <div className="max-w-4xl text-center pb-6 sm:pb-10">
+            <h1 className="rise-in font-hero text-4xl uppercase leading-[1.05] tracking-wide drop-shadow-[0_3px_10px_rgba(0,0,0,0.9)] sm:whitespace-nowrap sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl sm:leading-[0.9]">
+              <span className="block sm:inline">Engineering Strength.</span>{" "}
+              <span className="block sm:inline text-primary">Designing the Future.</span>
             </h1>
           </div>
           <div className="my-auto flex items-center justify-center -mt-3 sm:-mt-6 pb-2">

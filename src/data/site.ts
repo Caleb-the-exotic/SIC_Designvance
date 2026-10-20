@@ -104,7 +104,7 @@ export const visits: Visit[] = [
     reports: [
       {
         label: "IV Report",
-        url: "/IV/iv-report.pdf",
+        url: "/IV/AIRAA%20Engineering%20works%20&%20Kiruthiga%20Industries/IV%20report%20-%20AIRAA%20Engineering%20&%20Kiruthika%20Industries.pdf",
       },
     ],
     outcomes: [

@@ -58,7 +58,7 @@ function UploadPage() {
 
       const { error } = await supabase.from("posts").insert({
         section,
-        tech_category: section === "technology" ? techCategory : null,
+        tech_category: (section === "technology" ? techCategory : null) as any,
         title,
         caption: caption || null,
         image_url,

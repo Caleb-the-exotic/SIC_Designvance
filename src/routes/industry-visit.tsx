@@ -165,31 +165,50 @@ function VisitCard({ visit }: { visit: Visit }) {
               )}
             </div>
 
-            {/* Single download button in bottom right corner */}
-            <div className="mt-8 flex justify-end">
-              {hasReports ? (
-                visit.reports!.length === 1 ? (
-                  <a
-                    href={visit.reports![0].url}
-                    download="IV report - AIRAA Engineering & Kiruthika Industries.pdf"
-                    className="inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-4 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary shadow-sm cursor-pointer"
-                  >
-                    <Download className="h-4 w-4" />
-                    Download Report
-                  </a>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => setDownloadOpen(true)}
-                    className="inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-4 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary shadow-sm cursor-pointer"
-                  >
-                    <Download className="h-4 w-4" />
-                    Download Report
-                  </button>
-                )
-              ) : (
-                <span className="text-sm text-muted-foreground">No reports available</span>
-              )}
+            {/* Action buttons in bottom right corner */}
+            <div className="mt-8 flex justify-end items-center gap-3">
+              {(() => {
+                const reports = visit.reports;
+                if (!reports || reports.length === 0) {
+                  return <span className="text-sm text-muted-foreground">No reports available</span>;
+                }
+                const firstReport = reports[0];
+                if (!firstReport) {
+                  return <span className="text-sm text-muted-foreground">No reports available</span>;
+                }
+                return (
+                  <>
+                    <a
+                      href={firstReport.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-lg border border-border bg-secondary/50 px-4 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-foreground transition-all duration-200 hover:border-primary hover:text-primary hover:bg-secondary/80 shadow-sm cursor-pointer"
+                    >
+                      <FileText className="h-4 w-4 text-primary" />
+                      Read
+                    </a>
+                    {reports.length === 1 ? (
+                      <a
+                        href={firstReport.url}
+                        download="IV report - AIRAA Engineering & Kiruthika Industries.pdf"
+                        className="inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-4 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary shadow-sm cursor-pointer"
+                      >
+                        <Download className="h-4 w-4" />
+                        Download Report
+                      </a>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setDownloadOpen(true)}
+                        className="inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-4 py-2.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary shadow-sm cursor-pointer"
+                      >
+                        <Download className="h-4 w-4" />
+                        Download Report
+                      </button>
+                    )}
+                  </>
+                );
+              })()}
             </div>
           </div>
         </div>

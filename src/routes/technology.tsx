@@ -101,6 +101,7 @@ type StaticResource = {
   caption: string;
   downloadUrl: string;
   viewUrl: string;
+  answerKeyUrl?: string;
 };
 
 const staticResources: Record<TechCategory, StaticResource[]> = {
@@ -111,6 +112,7 @@ const staticResources: Record<TechCategory, StaticResource[]> = {
         "Covers thin and thick cylinder theory under internal pressure. Topics include hoop and longitudinal stress in thin cylinders, Lamé's equations for radial and hoop stress distributions in thick cylinders, and worked examples on compound cylinders.",
       downloadUrl: "/SOM/Thin_and_Thick_Cylinders.pptx",
       viewUrl: "/SOM/Thin_and_Thick_Cylinders.pdf",
+      answerKeyUrl: "/SOM/Thick%20and%20Thin%20Cylinders%20Answer%20key.pdf",
     },
   ],
   "fluid-dynamics": [],
@@ -158,6 +160,7 @@ function Technology() {
       }, 500);
       return () => clearTimeout(id);
     }
+    return undefined;
   }, [carouselIndex, total]);
 
   useEffect(() => {
@@ -268,30 +271,40 @@ function Technology() {
                             {r.caption}
                           </p>
                         </div>
-                        <div className="mt-5 flex flex-wrap gap-3">
+                        <div className="mt-5 flex flex-wrap gap-2.5 sm:gap-3">
                           <a
                             href={r.downloadUrl}
                             download
-                            className="inline-flex items-center gap-2 rounded-full border border-white/70 px-5 py-2 font-mono text-[0.75rem] uppercase tracking-[0.16em] text-white transition-all duration-200 hover:bg-white hover:text-black hover:border-white"
+                            className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/70 px-3.5 py-1.5 sm:px-5 sm:py-2 font-mono text-[0.625rem] sm:text-[0.75rem] uppercase tracking-[0.14em] sm:tracking-[0.16em] text-white transition-all duration-200 hover:bg-white hover:text-black hover:border-white"
                           >
-                            <Download className="h-4 w-4" />
+                            <Download className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                             Download
                           </a>
                           <a
                             href={r.viewUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full border border-white/70 px-5 py-2 font-mono text-[0.75rem] uppercase tracking-[0.16em] text-white transition-all duration-200 hover:bg-white hover:text-black hover:border-white"
+                            className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/70 px-3.5 py-1.5 sm:px-5 sm:py-2 font-mono text-[0.625rem] sm:text-[0.75rem] uppercase tracking-[0.14em] sm:tracking-[0.16em] text-white transition-all duration-200 hover:bg-white hover:text-black hover:border-white"
                           >
                             Read
                           </a>
+                          {r.answerKeyUrl && (
+                            <a
+                              href={r.answerKeyUrl}
+                              download="Thick and Thin Cylinders Answer key.pdf"
+                              className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/70 px-3.5 py-1.5 sm:px-5 sm:py-2 font-mono text-[0.625rem] sm:text-[0.75rem] uppercase tracking-[0.14em] sm:tracking-[0.16em] text-white transition-all duration-200 hover:bg-white hover:text-black hover:border-white"
+                            >
+                              <Download className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                              Answer key
+                            </a>
+                          )}
                           <a
                             href={QUIZ_URL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full border border-white/70 px-5 py-2 font-mono text-[0.75rem] uppercase tracking-[0.16em] text-white transition-all duration-200 hover:bg-white hover:text-black hover:border-white"
+                            className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/70 px-3.5 py-1.5 sm:px-5 sm:py-2 font-mono text-[0.625rem] sm:text-[0.75rem] uppercase tracking-[0.14em] sm:tracking-[0.16em] text-white transition-all duration-200 hover:bg-white hover:text-black hover:border-white"
                           >
-                            <ExternalLink className="h-4 w-4" />
+                            <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                             Take Quiz
                           </a>
                         </div>
